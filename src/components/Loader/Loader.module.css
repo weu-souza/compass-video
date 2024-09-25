@@ -1,0 +1,24 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #121317;
+}
+
+.circle{
+    width: 80px;
+    height: 80px;
+    animation: rotate 1s linear infinite;
+    background-image: url('/src/assets/img/load1.png');
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
