@@ -63,11 +63,11 @@ const Favorite = ({media_type,media_id}:favBtn) => {
     const handleActive = () => {
       axios.request(watchlistOptions)
         .then(function (response) {
-          console.log(response.data);
+          // console.log(response.data);
           setActive(!active);
         })
         .catch(function (error) {
-          console.error(error);
+          // console.error(error);
         });
     };
   
