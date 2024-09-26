@@ -31,15 +31,17 @@ const Home = () => {
       query: "horror",
       include_adult: "false",
       language: "en-US",
-      page: "1",
+      page: "2",
     },
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZTQzNzk0M2M5YWFhODcxMDhjNmViNzk4OWZkMTg0MCIsIm5iZiI6MTcxOTYwNjUxMi4wOTc2MjEsInN1YiI6IjY2NzlmNjliYjUxYzg4MzU5NTNiNDAxNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.eiL73ROy94HbKkXvaRV_mLrna-JL8FjT0UyhZZkiYck",
+        `Bearer ${import.meta.env.VITE_KEY}`,
     },
   };
+
   const  collection  = useApi<data | null>(collectionsOpt);
+  
 
   const movieOpt = apiOptions(
     "GET",

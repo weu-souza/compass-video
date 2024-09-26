@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import image1 from '../../assets/icons/Ellipse 8.svg';
 import image2 from '../../assets/icons/Ellipse 9.svg';
+import { useNavigate } from 'react-router-dom';
 
 type UserDropdownProps = {
    isOpen: boolean;
@@ -10,9 +11,10 @@ type UserDropdownProps = {
 
 const UserDropdown: React.FC<UserDropdownProps> = ({ isOpen, toggleDropdown, closeDropdown }) => {
    const dropdownRef = useRef<HTMLDivElement>(null);
+   const navigate = useNavigate()
 const Loggout = () =>{
    window.localStorage.clear();
-   window.location.href = 'http://localhost:5173';
+   navigate("/")
 }
    useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {

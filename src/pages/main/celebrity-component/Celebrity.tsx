@@ -10,16 +10,8 @@ const Celebrity = () => {
   const headerOpt = apiOptions("GET", `https://api.themoviedb.org/3/tv/235484`);
  const headerSerie = useApi<serie|null>(headerOpt)
 const navigate = useNavigate()
-  const AtorOpt = {
-    method: "GET",
-    url: "https://api.themoviedb.org/3/person/popular",
-    params: { language: "en-US", page: "1" },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZTQzNzk0M2M5YWFhODcxMDhjNmViNzk4OWZkMTg0MCIsIm5iZiI6MTcxOTcxNzkxOS4wMjcxNDUsInN1YiI6IjY2NzlmNjliYjUxYzg4MzU5NTNiNDAxNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.x2tOpI-s9VF6m74-llZeMGQytuVWKp5dsdHJ2ZTjBmk",
-    },
-  };
+
+const AtorOpt = apiOptions("GET", `https://api.themoviedb.org/3/person/popular`)
   const carrossel = useApi<Icelebrity>(AtorOpt)
 
   console.log()

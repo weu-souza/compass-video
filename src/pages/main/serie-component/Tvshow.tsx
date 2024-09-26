@@ -21,11 +21,8 @@ interface season {
 
 const Tvshow = () => {
   const params = useParams()
-  // const [season,setSeason] = useState<season>()
-
-  const epsodesOptions = apiOptions("GET", `https://api.themoviedb.org/3/tv/${params.id}/season/${params.season_number}`)   
+  const epsodesOptions = apiOptions("GET", `https://api.themoviedb.org/3/tv/${params.id}/season/${params.season_number}`)  
   const season  = useApi<season>(epsodesOptions);
-  console.log(season.dados)
   return (
     <div>
       <SeasonHeader data={season.dados}/>

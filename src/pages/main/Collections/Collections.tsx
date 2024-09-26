@@ -1,5 +1,5 @@
 import Carrossel from "../../../components/Carrossel";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import HeadersCollections from "../../../components/headers-home/HeadersCollections";
 import { apiOptions } from "../../../shared/API/Config/Config";
 import useApi from "../../../shared/API/Hooks/useApi";
@@ -9,12 +9,13 @@ interface carrossel {
 }
 
 const Collections = () => {
+  const navigate = useNavigate()
   const SerieID = useParams();
   const options =  apiOptions("GET",`https://api.themoviedb.org/3/collection/${SerieID.id}`)
 const api = useApi(options)
 
   const handleCollection = (id: number) => {
-    console.log(id);
+    navigate(`/home/movie/${id}`);
   };
   return (
     <div>

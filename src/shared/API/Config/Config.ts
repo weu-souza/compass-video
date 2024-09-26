@@ -4,7 +4,7 @@ export const apiOptions = (method:string, url:string) =>{
     const options = {
         method: method,
         url: url,
-        params: { language: "en-US", page: "1" },
+        params: { language: "en-US", page: "1",include_adult: false},
         headers: {
           accept: "application/json",
           Authorization:
