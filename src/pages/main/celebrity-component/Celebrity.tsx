@@ -3,27 +3,52 @@ import HomeHeader from "../../../components/headers-home/HomeHeader";
 import { apiImageUrl, apiOptions } from "../../../shared/API/Config/Config";
 import Carrossel from "../../../components/Carrossel";
 import useApi from "../../../shared/API/Hooks/useApi";
-import serie from "../../../Serie";
-import Icelebrity from "../../../shared/API/Model/celebrity"
+import Icelebrity, { Iresults } from "../../../shared/API/Model/celebrity"
 import { useNavigate } from "react-router-dom";
+import serie from "../../../shared/API/Model/Serie";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 const Celebrity = () => {
   const headerOpt = apiOptions("GET", `https://api.themoviedb.org/3/tv/235484`);
  const headerSerie = useApi<serie|null>(headerOpt)
 const navigate = useNavigate()
 
 const AtorOpt = apiOptions("GET", `https://api.themoviedb.org/3/person/popular`)
-  const carrossel = useApi<Icelebrity>(AtorOpt)
+  const [carrossel,setCarrossel] = useState<Iresults[]>()
 
-  console.log()
+ useEffect(() =>{
+  axios
+  .request(AtorOpt)
+  .then(function (response) {
+      const atoresExcluidos = ['Christine Bermas','Min Do-yoon','Sae Bom', "Dyessa Garcia"];
 
- function redirectCelebrity(id:string){
-  navigate(`/home/movie/${id}`);
+setCarrossel(response.data?.results.filter((ator) => 
+  !atoresExcluidos.includes(ator.name)) 
+
+);
+  })
+  .catch(function (error) {
+    console.error(error);
+  });
+ },[])
+
+
+ function redirectCelebrity(id: string, media_type:string) {
+  if (media_type ==='movie') {
+    navigate(`/home/movie/${id}`);
   }
+  else if (media_type ==='tv') {
+    navigate(`/home/serie/${id}`);
+  }
+  
+}
 
   return (
     <div>
       <HomeHeader serie={headerSerie?.dados} />
-      {carrossel.dados?.results.slice(0,8).map((result)=>(
+     <div className="overflow-y-auto h-[900px]">
+     {carrossel?.map((result)=>(
         <div className=" bg-neutral-600 pb-11" key={result?.id}>
         <div className="flex flex-col gap-2 ml-16 pt-2">
           <div className="flex gap-16">
@@ -39,6 +64,7 @@ const AtorOpt = apiOptions("GET", `https://api.themoviedb.org/3/person/popular`)
         </div>
       </div>
       ))}
+     </div>
     </div>
   );
 };

@@ -35,7 +35,7 @@ const Carrossel = ({ data, redirectCollection }: carrosselType) => {
               src={
                 imagem.poster_path ? apiImageUrl(imagem?.poster_path) : semImg
               }
-              onClick={() => redirectCollection(imagem.id)}
+              onClick={() => redirectCollection(imagem.id, imagem?.media_type)}
               className="w-[260px] h-[361px] rounded-lg object-cover cursor-pointer"
               alt="sem imagem"
             />

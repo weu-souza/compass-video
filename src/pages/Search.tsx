@@ -10,7 +10,7 @@ const searchURL = 'https://api.themoviedb.org/3/search/';
 interface MediaItem {
   id: string;
   poster_path: string;
-  media_type:string
+  media_type:"movie" | "tv" | "collection"
 
 }
 
@@ -41,18 +41,23 @@ const Search = () => {
   }, [query, type]);
 
 
-  const handleFilmes = (id: string) => {
-    if(type === "tv" || results.find((res) => res.media_type === "tv")) {
+  const handleFilmes = (id: string, media_type:string) => {
+    if (type === "tv") {
       navigate(`/home/serie/${id}`);
-    }
-    if(type === "movie" || results.find((res) => res.media_type === "movie")) {
+    } else if (type === "movie") {
       navigate(`/home/movie/${id}`);
-    }
-    if(type === "collection" || results.find((res) => res.media_type === "collection")) {
+    } else if (type === "collection") {
       navigate(`/home/collection/${id}`);
+    } if(type === "multi") {
+      if (media_type === "tv") {
+        navigate(`/home/serie/${id}`);
+      } else if (media_type === "movie") {
+        navigate(`/home/movie/${id}`);
+      } else if (media_type === "collection") {
+        navigate(`/home/collection/${id}`);
+      }
     }
   };
-
   return (
     <div className="w-screen h-screen flex flex-col bg-neutral-600">
       <div className="flex-grow flex flex-col ml-[78px] mt-16 h3-heading text-white">
