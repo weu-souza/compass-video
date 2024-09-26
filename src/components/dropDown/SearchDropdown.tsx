@@ -7,10 +7,10 @@ type SearchDropdownProps = {
   onSelectOption: (option: OptionType) => void;
 };
 
-const OPTIONS = ['multi', 'movie', 'tv', 'person', 'collection'] as const;
+const OPTIONS = ['multi', 'movie', 'tv', 'collection'] as const;
 type OptionType = (typeof OPTIONS)[number];
 
-const OPTIONS_PT = ['Tudo', 'Filmes', 'Séries', 'Celebridades', 'Coleções'] as const;
+const OPTIONS_PT = ['Tudo', 'Filmes', 'Séries', 'Coleções'] as const;
 type OptionPTType = (typeof OPTIONS_PT)[number];
 
 const removeAccents = (str: string) =>
@@ -20,7 +20,6 @@ const OPTION_MAPPING: Record<string, OptionType> = {
   Tudo: 'multi',
   Filmes: 'movie',
   Series: 'tv',
-  Celebridades: 'person',
   Colecoes: 'collection'
 };
 

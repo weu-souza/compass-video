@@ -36,7 +36,7 @@ const Carrossel = ({ data, redirectCollection }: carrosselType) => {
                 imagem.poster_path ? apiImageUrl(imagem?.poster_path) : semImg
               }
               onClick={() => redirectCollection(imagem.id)}
-              className="w-[260px] h-[361px] rounded-lg object-cover"
+              className="w-[260px] h-[361px] rounded-lg object-cover cursor-pointer"
               alt="sem imagem"
             />
           </SplideSlide>

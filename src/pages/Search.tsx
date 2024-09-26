@@ -10,6 +10,8 @@ const searchURL = 'https://api.themoviedb.org/3/search/';
 interface MediaItem {
   id: string;
   poster_path: string;
+  media_type:string
+
 }
 
 
@@ -38,8 +40,17 @@ const Search = () => {
     }
   }, [query, type]);
 
+
   const handleFilmes = (id: string) => {
-    navigate(`/home/movie/${id}`);
+    if(type === "tv" || results.find((res) => res.media_type === "tv")) {
+      navigate(`/home/serie/${id}`);
+    }
+    if(type === "movie" || results.find((res) => res.media_type === "movie")) {
+      navigate(`/home/movie/${id}`);
+    }
+    if(type === "collection" || results.find((res) => res.media_type === "collection")) {
+      navigate(`/home/collection/${id}`);
+    }
   };
 
   return (

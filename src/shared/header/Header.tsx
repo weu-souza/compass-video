@@ -17,11 +17,11 @@ const Header: React.FC = () => {
   const [searchDropdownOpen, setSearchDropdownOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [selectedOption, setSelectedOption] = useState<string>('multi');
-  const location = useLocation();
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    e.stopPropagation()
     if (!search) return;
     navigate(`/home/search?q=${search}&type=${selectedOption}`);
   };
@@ -89,30 +89,31 @@ const Header: React.FC = () => {
               </nav>
             ) : (
               <div className="relative gap-y-4 w-[302px] md:w-[450px] h-[102px] md:h-[67px] px-4 py-3 bg-neutral-700 rounded border border-neutral-400 justify-center items-start md:items-center flex flex-col md:flex-row">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="flex gap-3 ">
                   <input
                     type="text"
-                    className="bg-neutral-700 text-white text-base font-normal body-review min-w-56"
+                    className="bg-neutral-700 text-white text-base font-normal py-2 outline-none body-review min-w-56 border border-neutral-400 p-2"
                     placeholder="Filme, série ou celebridade"
                     onChange={(e) => setSearch(e.target.value)}
                     value={search}
                   />
-                  <button className="text-transparent absolute ml-[125px] w-4" type="submit">.</button>
-                </form>
-                <div className="justify-end items-center gap-3 flex">
                   <SearchDropdown 
                     isOpen={searchDropdownOpen} 
                     toggleDropdown={() => setSearchDropdownOpen(!searchDropdownOpen)} 
                     closeDropdown={() => setSearchDropdownOpen(false)}
                     onSelectOption={(option) => setSelectedOption(option)}
                   />
-                  <button className="text-white" onClick={() => setSearchOpen(!searchOpen)}>
+                  <div className="justify-end items-center gap-3 flex">
+                  
+                  <button className="text-white" type="submit">
                     <IconSearch className="w-6 h-6" />
                   </button>
-                  <button className="text-white" onClick={() => setSearchOpen(!searchOpen)}>
+                  <button className="text-white" type="button" onClick={() => setSearchOpen(!searchOpen)}>
                     <img src={iconClose} alt="Fechar" />
                   </button>
                 </div>
+                </form>
+                
               </div>
             )}
             <UserDropdown isOpen={userDropdownOpen} toggleDropdown={() => setUserDropdownOpen(!userDropdownOpen)} closeDropdown={() => setUserDropdownOpen(false)} />

@@ -49,7 +49,7 @@ const Main = () => {
         window.localStorage.setItem("sessionId", response.data.session_id);
       })
       .catch(function (error) {
-        console.error(error);
+        // console.error(error);
       });
     } else if (loginMethod === "guest") {
       const options = {
