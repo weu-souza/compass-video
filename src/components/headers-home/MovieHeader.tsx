@@ -4,6 +4,7 @@ id:number,
 name:string
 }
 interface Movie{
+  id:number;
     backdrop_path:string
     genres:genre[]
     original_title:string
@@ -31,10 +32,10 @@ const MovieHeader = ({data,movieCategorie}:movieTipe) => {
           {data?.runtime} Minutes
         </span>
         <p className="text-white caption flex flex-row">{data?.genres.map((genre) =>(<span key={genre.id}> <span>{genre.name}</span>, </span>))}</p>
-        {movieCategorie && <ButtonArea data={data?.original_title} icon={false} seccondButton="TRAILER"/>}
+        {movieCategorie && <ButtonArea WatchmediaType="movie" watchMediaId={data?.id} data={data?.original_title} icon={false} seccondButton="TRAILER"/>}
         
         <p className="body-large text-white">{data?.overview}</p>
-        {!movieCategorie && <ButtonArea data={data?.original_title} seccondButton="MAIS INFORMAÇÕES" icon={true}/>}
+        {!movieCategorie && <ButtonArea WatchmediaType="movie" watchMediaId={data?.id} data={data?.original_title} seccondButton="MAIS INFORMAÇÕES" icon={true}/>}
       </div>
     </div>
     </div>

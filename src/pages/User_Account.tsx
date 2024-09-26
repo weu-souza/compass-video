@@ -33,13 +33,12 @@ const User_Account = () => {
       console.error(`Erro ao buscar ${url}:`, error);
     }
   };
-
   useEffect(() => {
     if (sessionId) {
-      fetchList('https://api.themoviedb.org/3/account/21349506/favorite/movies', setFilmesFavoritos);
-      fetchList('https://api.themoviedb.org/3/account/21349506/favorite/tv', setSeriesFavoritas);
-      fetchList('https://api.themoviedb.org/3/account/21349506/watchlist/movies', setFilmesVerDepois);
-      fetchList('https://api.themoviedb.org/3/account/21349506/watchlist/tv', setSeriesVerDepois);
+      fetchList(`https://api.themoviedb.org/3/account/${import.meta.env.VITE_account_id}/favorite/movies`, setFilmesFavoritos);
+      fetchList(`https://api.themoviedb.org/3/account/${import.meta.env.VITE_account_id}/favorite/tv`, setSeriesFavoritas);
+      fetchList(`https://api.themoviedb.org/3/account/${import.meta.env.VITE_account_id}/watchlist/movies`, setFilmesVerDepois);
+      fetchList(`https://api.themoviedb.org/3/account/${import.meta.env.VITE_account_id}/watchlist/tv`, setSeriesVerDepois);
     } else {
       console.error('sessionId não encontrado no localStorage');
     }

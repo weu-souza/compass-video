@@ -3,7 +3,6 @@ import { serieProps } from "../../shared/Types/Types";
 import ButtonArea from "./ButtonArea";
 
 const HomeHeader = ({ serie }: serieProps) => {
-
   return (
     <div className="flex flex-col py-40  pb-11 image-bg-container">
       <div className="flex flex-col ml-20 gap-5 max-w-[719px]">
@@ -17,7 +16,7 @@ const HomeHeader = ({ serie }: serieProps) => {
         </span>
         <p className="text-white caption">{serie?.genres[0].name}</p>
         <p className="body-large text-white">{serie?.overview}</p>
-        <ButtonArea  data={serie?.original_name} seccondButton="MAIS INFORMAÇÕES" icon={true} />
+        <ButtonArea watchMediaId={serie?.id} WatchmediaType="tv" data={serie?.original_name} seccondButton="MAIS INFORMAÇÕES" icon={true} />
       </div>
     </div>
   );
