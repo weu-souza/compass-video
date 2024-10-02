@@ -21,10 +21,9 @@ const AtorOpt = apiOptions("GET", `https://api.themoviedb.org/3/person/popular`)
   axios
   .request(AtorOpt)
   .then(function (response) {
-      const atoresExcluidos = ['Christine Bermas','Min Do-yoon','Sae Bom', "Dyessa Garcia"];
-
+      const atoresExcluidos = ["Gary Oldman","Cooper Koch","Sydney Sweeney","Margaret Qualley","Jason Statham","Joey King","Scarlett Johansson","Jenna Ortega"];
 setCarrossel(response.data?.results.filter((ator) => 
-  !atoresExcluidos.includes(ator.name)) 
+  atoresExcluidos.includes(ator.name)) 
 
 );
   })
